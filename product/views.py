@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from notify.signals import notify
 
-from .models import Product
 from .serializers import ProductSerializer, OrderSerializer, OrderItemsSerializer, NotificationSerializer
 from .models import *
 from .forms import *
