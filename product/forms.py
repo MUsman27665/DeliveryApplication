@@ -18,21 +18,6 @@ class AddDriverForm(forms.ModelForm):
         model = Driver
         fields = '__all__'
 """
-    # class Meta:
-    #     model = User
-    #     fields = ('first_name', 'username', 'address', 'password1', 'password2')
-
-    # def __init__(self, *args, **kwargs):
-    #         super(UserCreationForm, self).__init__(*args, **kwargs)
-    #         for fieldname in ['password1', 'password2']:
-    #             self.fields[fieldname].help_text = None
-
-    #         x = self.fields['password1']
-    #         x.label = "Password:"
-    #         y = self.fields['password2']
-    #         y.label = "Confirm Password:"
-
-    #         z.label = ""
 
 """
 def clean_password2(self):
