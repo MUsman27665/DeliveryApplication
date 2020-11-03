@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   
+    <title>Displaying Queries</title>
+
+{% endblock %}
+{% url 'updateDriver' obj.pk %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card table-big-boy">
+            <div class="card-header ">
+                <h4 class="card-title">People who Contacted Us</h4>
+                <p class="card-category">A table for content management</p>
+                <br />
+            </div>
+            <div class="card-body table-full-width">
+                <table class="table table-bigboy">
+                    <thead>
+                        <tr>
+                            <th class="text-left">iD</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th class="th-description">Description</th>
+                            <th class="text-right">Date</th>
+                            <th class="text-right">Send Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        
+                        
+                    
+
+                    {% for query in all_queries %}
+                        <tr>
+                            
+                            <td class="td-name">
+                                {{ query.pk  }}
+                            </td>
+                            <td class="td-name">
+                                {{ query.fullname  }}
+                            </td>
+                            <td class="td-name">
+                                {{ query.email  }}
+                            </td>
+                            <td>
+                                {{ query.description}}
+                            </td>
+                            <td class="td-number">{{ query.date }}</td>
+                            <td class="td-number">
+                                <button><a href="{% url 'sendmail' query.id %}">Send Email</a></button>
+                            </td>
+                            <td class="td-actions">
+                               
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+{% endblock %}

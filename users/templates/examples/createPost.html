@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   
+    <title>Create Post</title>
+
+{% endblock %}
+{% url 'updateDriver' obj.pk %}
+{% block content %}
+
+<div class="section-image" data-image="{% static 'assets/img/bg5.jpg' %}"  ;>
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6">
+                <form method="post" action ="{% url 'createPost' %}" enctype="multipart/form-data" class="form sign-up">
+                    {% csrf_token %}
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="card-header">
+                                <h4 class="card-title">Enter Post Details You want To Create</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            {% for field in myform %}
+                                 {% if field.label == "post_title" %} 
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label>{{field.label}} </label>
+                                                    {{field}}
+                                            </div>
+                                            <span style="color: red"> {{ field.errors }} </span>
+                                        </div>
+                                    </div>
+                                 {% elif field.label == "post_description" %}
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label>{{field.label}} </label>
+                                                    {{field}}
+                                            </div>
+                                            <span style="color: red"> {{ field.errors }} </span>
+                                        </div>
+                                    </div>
+                                 {% elif field.label == "post_image" %}
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label>{{field.label}} </label>
+                                                    {{field}}
+                                            </div>
+                                            <span style="color: red"> {{ field.errors }} </span>
+                                        </div>
+                                    </div>
+                                 {% endif %}
+                             {% endfor %}
+                             <button type="submit" class="btn btn-info btn-fill pull-right">Create Post</button>
+                             <div class="clearfix"></div>
+                         </div>
+
+
+
+
+
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+{% endblock %}
+<div class="card-body ">
+    {% for field in myform %}
+    <div class="row">
+        {% if forloop.counter == 1 %}
+        <div class="col-md-12 ">
+            <div class="form-group">
+                <label>Title </label>
+                {{ field }}
+                <span style="color: red"> {{ field.errors }} </span>
+            </div>
+        </div>
+        
+            
+    </div>
+    {% elif forloop.counter  == 3 %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Description</label>
+                {{ field }}
+                <span style="color: red"> {{ field.errors }} </span>
+            </div>
+        </div>
+    </div>
+    
+    {% else %}
+    <div class="row">
+        <label class="col-sm-2 col-form-label">image</label>
+        <div class="col-sm-12">
+            <div class="form-group">
+                {{ field }}
+                <span style="color: red"> {{ field.errors }} </span>
+            </div>
+        </div>
+       
+    </div>
+    {% endif %}
+        {% endfor %}
+    <button type="submit" class="btn btn-info btn-fill pull-right">Create Post</button>
+    <div class="clearfix"></div>
+</div>

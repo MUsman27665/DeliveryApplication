@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   
+    <title>Displaying Posts</title>
+
+{% endblock %}
+{% url 'updateDriver' obj.pk %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card table-big-boy">
+            <div class="card-header ">
+                <h4 class="card-title">All Posts</h4>
+                <p class="card-category">A table for content management</p>
+                <br />
+            </div>
+            <div class="card-body table-full-width">
+                <table class="table table-bigboy">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Thumb</th>
+                            <th>Blog Title</th>
+                            <th class="th-description">Description</th>
+                            <th class="text-right">Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        
+                        
+                    
+
+                    {% for post in posts %}
+                        <tr>
+                            <td>
+                                {% if post.image %}
+                                    <div class="img-container">
+                                        <img src="{{image_source}}{{post.image}}" alt="...">
+                                    </div>
+                                {% else %}
+                                    <div class="img-container">
+                                        <img src="{% static 'assets/img/download.png' %}" alt="...">
+                                    </div>
+                                {% endif %}
+                            </td>
+                            <td class="td-name">
+                                {{ post.title  }}
+                            </td>
+                            <td>
+                                {{ post.description}}
+                            </td>
+                            <td class="td-number">{{ post.Date }}</td>
+                            
+                            <td class="td-actions">
+                                <!-- <button type="button" rel="tooltip" data-placement="left" title="View Post" class="btn btn-info btn-link btn-icon">
+                                    <i class="fa fa-image"></i>
+                                </button>
+                                <button type="button" rel="tooltip" data-placement="left" title="Edit Post" class="btn btn-success btn-link btn-icon">
+                                    <i class="fa fa-edit"></i>
+                                </button> -->
+                                <!-- <button type="button" rel="tooltip" data-placement="left" title="Remove Post" class="btn btn-danger btn-link btn-icon "> -->
+                                    <!-- <i class="fa fa-times"></i> -->
+                                    <!-- <a  href="{% url 'deletePost' post.id %}" class="text-danger"> <i class="fa fa-times"></i></a> -->
+                                <!-- </button> -->
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+{% endblock %}

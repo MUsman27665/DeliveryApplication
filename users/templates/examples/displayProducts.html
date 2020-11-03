@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   
+    <title>Displaying Products</title>
+
+{% endblock %}
+{% url 'updateDriver' obj.pk %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card table-big-boy">
+            <div class="card-header ">
+                <h4 class="card-title">All Products</h4>
+                <p class="card-category">A table for content management</p>
+                <br />
+            </div>
+            <div class="card-body table-full-width">
+                <table class="table table-bigboy">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Product Image</th>
+                            <th>Product Name</th>
+                            <th class="th-description">Price</th>
+                            <th class="th-description">Description</th>
+                            <th class="th-description">Category</th>
+
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        
+                        
+                    
+
+                    {% for pro in products %}
+                        <tr>
+                            <td>
+                                
+                                <div class="img-container">
+                                    <img src="{{pro.product_image.url}}" alt="...">
+                                </div>
+                                
+                            </td>
+                            <td class="td-name">
+                                {{ pro.product_name  }}
+                            </td>
+                            <td>
+                                {{ pro.product_price  }}
+                            </td>
+
+                            <td>
+                                {{ pro.product_description  }}
+                            </td>
+                            <td>
+                                {{ pro.product_id  }}
+                            </td>
+                            
+                            <td class="td-actions">
+                                <!-- <button type="button" rel="tooltip" data-placement="left" title="View Post" class="btn btn-info btn-link btn-icon">
+                                    <i class="fa fa-image"></i>
+                                </button>
+                                <button type="button" rel="tooltip" data-placement="left" title="Edit Post" class="btn btn-success btn-link btn-icon">
+                                    <i class="fa fa-edit"></i>
+                                </button> -->
+                                <!-- <button type="button" rel="tooltip" data-placement="left" title="Remove Post" class="btn btn-danger btn-link btn-icon "> -->
+                                    <!-- <i class="fa fa-times"></i> -->
+                                    <!-- <a  href="" class="text-danger"> <i class="fa fa-times"></i></a> -->
+                                <!-- </button> -->
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% url 'deletePost' post.id %}
+{% block javascript %}
+
+
+{% endblock %}

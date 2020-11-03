@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   
+    <title>Adding Products</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="section-image" data-image="{% static 'assets/img/bg5.jpg' %}"  ;>
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6">
+                <form class="form" action="{% url 'addProducts' %}" method="POST" enctype="multipart/form-data">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="card-header">
+                                <h4 class="card-title">Add Product Details</h4>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            {% for field in myform %}
+                                {% if field.label == "category_id" %} 
+                            <!-- <div class="row">
+                                
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label>Price </label>
+                                        <input type="text" class="form-control"  name="firstname" value="{{obj.firstname}}">
+                                        field
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control" name="lastname" value="{{obj.lastname}}">
+                                    </div>
+                                </div>
+                                
+                            </div> -->
+                            
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">{{field.label}} </label>
+                                        {{field}}
+                                        <!-- <input type="email" disabled class="form-control" name="email" value="{{obj.email}}"> -->
+                                    </div>
+                                    <span style="color: red"> {{ field.errors }} </span>
+
+                                </div>
+                                
+                            </div>
+
+                            {% elif field.label == "product_name" %}
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">{{field.label}}</label>
+                                        {{field}}
+                                        <!-- <input type="email" disabled class="form-control" name="email" value="{{obj.email}}"> -->
+                                    </div>
+                                    <span style="color: red"> {{ field.errors }} </span>
+
+                                </div>
+                                
+                            </div>
+                            
+                            {% elif field.label == "product_price" %}
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">{{field.label}}</label>
+                                        {{field}}
+                                        <!-- <input type="email" disabled class="form-control" name="email" value="{{obj.email}}"> -->
+                                    </div>
+                                    <span style="color: red"> {{ field.errors }} </span>
+
+                                </div>
+                                
+                            </div>
+                            {% elif field.label == "product_description" %}
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">{{field.label}}</label>
+                                        {{field}}
+                                        <!-- <input type="email" disabled class="form-control" name="email" value="{{obj.email}}"> -->
+                                    </div>
+                                    <span style="color: red"> {{ field.errors }} </span>
+
+                                </div>
+                                
+                            </div>
+                            
+
+                            {% elif field.label == "product_image" %}
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">{{field.label}}</label>
+                                        {{field}}
+                                        <!-- <input type="email" disabled class="form-control" name="email" value="{{obj.email}}"> -->
+                                    </div>
+                                    <span style="color: red"> {{ field.errors }} </span>
+
+                                </div>
+                                
+                            </div>
+                            {% endif %}
+
+                            {% endfor %}
+                            <!-- <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label>Contact Number (disabled)</label>
+                                        <input type="text" disabled class="form-control"  name="contact" value="{{obj.contact}}">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" name="address" value="{{obj.address}}">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password" value="{{obj.password}}">
+                                    </div>
+                                </div>
+                                
+                            </div> -->
+                            <!-- <div class="row">
+                                <label class="col-sm-2 col-form-label">image</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <input class="form-control-file" type="file" name="image"  value="{{obj.image}}"/>
+                                    </div>
+                                </div>
+                               
+                            </div> -->
+                            <button type="submit" class="btn btn-info btn-fill pull-right">Create Product </button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+
+{% endblock %}

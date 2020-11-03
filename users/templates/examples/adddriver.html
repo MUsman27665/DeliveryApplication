@@ -1,0 +1,132 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+   
+    <title>Add Driver</title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        
+        <div class="col-md-10">
+            <form id="TypeValidation" class="form-horizontal" action="{% url 'addDriver' %}" enctype="multipart/form-data" method="POST" >
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Add Drivers</h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <p style="color: red;">{{LoginError}}</p>
+                            <p style="color: red;">{{myform}}</p>
+                            <label class="col-sm-2 col-form-label">Full Nmae</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input class="form-control" id="fname" name="first_name" type="text" placeholder="First Name" required="true" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input class="form-control" id="lname" type="text" name="last_name" placeholder="Last Name" required="true" />
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="email" email="true" placeholder="enter email here" />
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Phone Number</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="number" placeholder="enter contact number here" number="true" required="true" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Address</label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="address" placeholder="enter address here" required="true" />
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input class="form-control" id="idSource" name="password" type="password" placeholder="Password" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input class="form-control" id="idDestination" name="confirm_password" type="password" placeholder="Confirm Password" equalTo="#idSource" />
+                                </div>
+                            </div>
+                           
+                        </div>
+                         <div class="row">
+                            <label class="col-sm-2 col-form-label">image</label>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <input class="form-control-file" type="file" name="image" accept="image/*" required="true" />
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+<script type="text/javascript">
+    function setFormValidation(id) {
+        $(id).validate({
+            highlight: function(element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                $(element).closest('.form-check').removeClass('has-success').addClass('has-error');
+            },
+            success: function(element) {
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+                $(element).closest('.form-check').removeClass('has-error').addClass('has-success');
+            },
+            errorPlacement: function(error, element) {
+                $(element).closest('.form-group').append(error).addClass('has-error');
+            },
+        });
+    }
+
+    $(document).ready(function() {
+        setFormValidation('#RegisterValidation');
+        setFormValidation('#TypeValidation');
+        setFormValidation('#LoginValidation');
+        setFormValidation('#RangeValidation');
+    });
+</script>
+
+{% endblock %}
