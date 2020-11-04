@@ -1,21 +1,9 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 from datetime import datetime, date
-# from datetime import datetime
 from django.contrib.auth.models import User
-# # Create your models here.
-from users.models import Driver
 
-#User = get_user_model()
 
-# class Category(models.Model):
-#     # user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-#     categoryName = models.CharField(max_length=30,default="")
-#     categoryPic =models.ImageField(upload_to='product/images',default="shopApp/images/default.jpg")
-
-"""
 class Driver(models.Model):
-    
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     email = models.EmailField(max_length=50,blank=True,unique=True)
@@ -26,8 +14,6 @@ class Driver(models.Model):
 
     def __str__(self):
         return self.firstname+" "+self.lastname
-
-"""
 
 
 class Post(models.Model):
@@ -52,8 +38,7 @@ class ContactUs(models.Model):
 
 class Category(models.Model):
     category_name = models.CharField(max_length=30,default="")
-    category_image = models.ImageField(upload_to='iCV_Nation/category')
-    # abc = models.CharField(max_length=30,default="")
+    category_image = models.ImageField(upload_to='iCV_Nation/category',default="")
 
     def __str__(self):
         return self.category_name
@@ -61,27 +46,13 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
-    product_name = models.CharField(max_length=30,default="")
+    product_name = models.CharField(max_length=30, default="")
     product_price = models.IntegerField(default="000")
     product_description = models.CharField(max_length=300, default="")
     product_image = models.ImageField(upload_to='iCV_Nation/images', default="iCV_Nation/images/defaults.jpg")
 
     def __str__(self):
         return self.product_name
-"""
-class Cart(models.Model):
-    cart_number = models.IntegerField(default='1')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_id')
-    products = models.ManyToManyField(Product, on_delete=models.CASCADE,default=1, related_name='product_id', blank=True)
-    product_quantity = models.IntegerField(default='000')
-    product_price_total = models.IntegerField(default='000')
-    no_of_products_in_cart = models.IntegerField()
-    total_items_in_cart = models.IntegerField(default='1')
-    shipping_cost = models.IntegerField(default='5')
-    total_cost_of_order = models.IntegerField(default='000')
-    order_confirmation_status = models.BooleanField(default=True)
-"""
-    #order
 
 
 class Order(models.Model):
@@ -107,8 +78,7 @@ class Order(models.Model):
 
 class Orderitems(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='userid', null=True)
-    #order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_id')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_id')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_id',default=1)
     product_quantity = models.IntegerField(default=000)
     product_cost_total = models.IntegerField(default=000)
     order_number = models.IntegerField(default=000)
@@ -125,3 +95,8 @@ class Notifications(models.Model):
 
     def __str__(self):
         return self.message
+
+
+class UserImage(models.Model):
+    user_number = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='iCV_Nation/images', default="iCV_Nation/images/defaults.jpg")
